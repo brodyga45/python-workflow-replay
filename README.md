@@ -8,7 +8,9 @@ This is an early product experiment. This repository contains an illustrative ex
 
 ## What has been checked
 
-The local prototype supports previous-step return values, named exports, explicit per-step inputs, and synchronous/asynchronous handlers. Eight synthetic contract tests, a clean-archive example run and rejection of an intentionally wrong expected trace passed on macOS with Python 3.11.12. Linux and Windows have not been validated.
+The local prototype supports previous-step return values, named exports, explicit per-step inputs, and synchronous/asynchronous handlers. Ten synthetic contract tests, a clean-archive example run and rejection of an intentionally wrong expected trace passed from the same review archive on macOS with Python 3.11.12 and 3.12.14, and Linux ARM64 with Python 3.11.17. Windows and Linux x86-64 have not been validated.
+
+The JSON trace check distinguishes booleans from numbers and compares the representation actually emitted by the JSON encoder: Python tuples become JSON arrays. Object key order is ignored; JSON numbers `1` and `1.0` compare equal. A mismatch exits with status 1 without printing an accepted trace. These are local contract checks, not evidence of a customer's workflow equivalence.
 
 A separate local check used the unchanged public handler from [Mopius Mobile's office-fitness-bot](https://github.com/mopius/office-fitness-bot), licensed under MIT (Copyright 2024 Mopius Mobile GmbH). For seven dates fixed by the test harness, its result matched a separate ordinary Python invocation. No original-platform execution or customer acceptance was available. The third-party code is not included in this repository.
 
@@ -22,10 +24,18 @@ Saved event data alone does not make execution deterministic: handlers can read 
 
 Preserving Python alone is not unique: free alternatives such as [MigrateFlows](https://github.com/davobene/migrateflows) already preserve Python inside n8n. The question here is whether running as ordinary Python and comparing agreed traces provides useful additional value.
 
-## Feedback sought
+## Evaluate one workflow case
 
-Would a finished, documented downloadable source kit for this narrow task be useful at around **$39 once**, or do pytest and your existing scripts already cover it? Nothing is for sale and no payment is requested.
+The proposed product is a reusable downloadable Python source kit with the runner, CLI, synthetic fixtures, tests and setup/acceptance documentation. The price hypothesis is **$39 once** for a versioned source package, not a hosted service or a migration engagement. The tested package remains an unpublished review candidate; nothing is for sale and no payment is requested.
 
-Reply in [the example issue](https://github.com/brodyga45/python-workflow-replay/issues/1). Please use synthetic data only; do not post customer events, credentials or account exports.
+To check whether it fits a task you actually have, reply in [the example issue](https://github.com/brodyga45/python-workflow-replay/issues/1) with:
+
+- The Python version and OS you need to run on.
+- A made-up input and the expected per-step JSON result, established independently of this runner.
+- Whether the relevant steps use only their explicit inputs, or also need a clock, network service, datastore or connected account. Describe dependencies without providing access.
+
+The next step is to agree one supported, non-secret case and its pass/fail rule before any paid delivery. If the task needs unsupported platform services, that gap must be resolved before offering the package. A passing local fixture alone does not establish a complete migration.
+
+Do not post customer events, private code, credentials, account exports or personal data. A synthetic example is enough for this first check.
 
 Independent experiment by brodyga45. Not affiliated with Pipedream, Workday or n8n.
