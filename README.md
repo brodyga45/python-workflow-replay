@@ -10,11 +10,15 @@ This is an early product experiment. This repository contains an illustrative ex
 
 The local prototype supports previous-step return values, named exports, explicit per-step inputs, and synchronous/asynchronous handlers. Eight synthetic contract tests, a clean-archive example run and rejection of an intentionally wrong expected trace passed on macOS with Python 3.11.12. Linux and Windows have not been validated.
 
+A separate local check used the unchanged public handler from [Mopius Mobile's office-fitness-bot](https://github.com/mopius/office-fitness-bot), licensed under MIT (Copyright 2024 Mopius Mobile GmbH). For seven dates fixed by the test harness, its result matched a separate ordinary Python invocation. No original-platform execution or customer acceptance was available. The third-party code is not included in this repository.
+
 ## Limits
 
 This is ordinary Python execution with the process's permissions, **not a sandbox**. Imports and handlers can read/write files and use the network; only reviewed, trusted code is appropriate.
 
 No Pipedream export importer, managed OAuth, app triggers, HTTP listener, scheduler, datastore migration, automatic dependency installation, retries or branching is implemented.
+
+Saved event data alone does not make execution deterministic: handlers can read the clock, randomness or external state. The runner does not freeze time or stub these dependencies. The linked office-fitness-bot handler chooses different messages for the same event on different weekdays; its compatibility check controlled the clock outside the product.
 
 Preserving Python alone is not unique: free alternatives such as [MigrateFlows](https://github.com/davobene/migrateflows) already preserve Python inside n8n. The question here is whether running as ordinary Python and comparing agreed traces provides useful additional value.
 
