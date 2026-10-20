@@ -28,6 +28,17 @@ Preserving Python alone is not unique: free alternatives such as [MigrateFlows](
 
 The proposed product is a reusable downloadable Python source kit with the runner, CLI, synthetic fixtures, tests and setup/acceptance documentation. The price hypothesis is **$39 once** for a versioned source package, not a hosted service or a migration engagement. The tested package remains an unpublished review candidate; nothing is for sale and no payment is requested.
 
+## Proposed $39 pilot scope
+
+Before an order, we would agree a small supported case, the target OS/Python version and the full expected per-step JSON trace. The proposed delivery is:
+
+- A versioned ZIP containing the Python runner and CLI, original synthetic examples, tests, quickstart, acceptance checklist and a file-hash manifest.
+- A documented command for the agreed case. Acceptance means the buyer can extract the package and run that command on the agreed system: the complete trace matches the independently supplied expected result with exit status 0; an intentionally wrong expected result produces exit status 1 and no accepted trace on stdout.
+- One review of a reproducible defect in that agreed case, reported within 14 calendar days of delivery, with one correction if the kit fails the agreed acceptance check. Further workflow adaptation, new platform integrations and future-version support would need a separate scope.
+- Proposed source-use rights to inspect, modify and reuse the kit in the buyer's own or client workflows. Redistributing the kit as a standalone product would require separate permission. The written licence and order terms must be agreed before payment.
+
+The target system must be validated before an order if it is outside the checked configurations above. The pilot remains a conditional proposal; no order, licence agreement or payment has been accepted.
+
 To check whether it fits a task you actually have, reply in [the example issue](https://github.com/brodyga45/python-workflow-replay/issues/1) with:
 
 - The Python version and OS you need to run on.
